@@ -1,38 +1,8 @@
-arb
-===
+=======
+spock
+=====
 
-**arb** is a lightwheight boilerplate to [AngularJS](http://angularjs.org),
-[RequireJS](http://requirejs.org)
-and [Twitter Bootstrap](http://getbootstrap.com).
-
-The purpose of this boilerplate is to bring the power of AngularJS to extend
-HTML vocabulary, ease in loading modules via
-[AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) RequireJS and agility to
-create layout of Twitter Bootstrap.
-
-### Env requirements
-
-- [Node.js](http://nodejs.org) / [npm](http://npmjs.org)
-- [bower](http://bower.io)
-- [Grunt](http://gruntjs.com)
-
-### Instalation
-
-```shell
-git clone git://github.com/joaoneto/arb.git
-cd arb && npm install
-```
-
-The `npm install`, install the dependencies contained in the `packades.json`.
-After `npm install`, will run the `postinstall`, which is the Grunt task
-`install`, which installs the dependencies contained in the `bower.json` and
-only copies the necessary files to the folder `public/assets`.
-
-### Init server
-
-```shell
-$ npm start
-```
+Socket.io PouchDb Offline Couchdb Kanso
 
 ### License
 
