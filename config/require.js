@@ -11,15 +11,20 @@ requirejs.config({
       exports: 'angular',
       deps: ['jquery']
     },
+    'pouchdb-nightly.min' : {
+      exports: 'pouchdb'
+    },
     'angular-mocks': ['angular'],
     'angular-bootstrap': ['angular'],
     'angular-ui-router': ['angular'],
+    'angular-pouchdb': ['angular', 'pouchdb-nightly.min'],
     'restangular': ['angular', 'lodash'],
     'src.map': [
       'angular-mocks',
       'angular-ui-router',
       'angular-bootstrap',
-      'restangular'
+      'restangular',
+      'angular-pouchdb'
     ],    
     'constants': [
       'angular'
