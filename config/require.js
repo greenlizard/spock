@@ -11,13 +11,10 @@ requirejs.config({
       exports: 'angular',
       deps: ['jquery']
     },
-    'pouchdb-nightly.min' : {
-      exports: 'pouchdb'
-    },
     'angular-mocks': ['angular'],
     'angular-bootstrap': ['angular'],
     'angular-ui-router': ['angular'],
-    'angular-pouchdb': ['angular', 'pouchdb-nightly.min'],
+    'angular-pouchdb': ['angular', 'pouchdb'],
     'restangular': ['angular', 'lodash'],
     'src.map': [
       'angular-mocks',
@@ -39,6 +36,6 @@ requirejs.config({
     'src.map': '../config/src.map',
     'constants': '../config/constants',
     'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router'
-  },
+  }
   
 })

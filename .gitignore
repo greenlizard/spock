@@ -25,3 +25,11 @@ results
 
 npm-debug.log
 node_modules
+
+_pouch__allDbs
+_pouch__allDbs.uuid
+
+ng-db.uuid
+ng-db
+
+couchdb.std*

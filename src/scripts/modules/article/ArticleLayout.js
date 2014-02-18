@@ -1,4 +1,4 @@
-angular.module('arb.modules.article.ArticleLayout', [
+angular.module('spock.modules.article.ArticleLayout', [
   'ui.router'
 ])
 

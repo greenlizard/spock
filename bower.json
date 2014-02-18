@@ -2,6 +2,7 @@
   "name": "arb",
   "version": "0.0.1",
   "authors": [
+    "Gabriel Mancini <gabriel.mancini@gmail.com>",
     "João Neto <joaopintoneto@gmail.com>"
   ],
   "description": "AngularJS RequireJS Bootstrap",
@@ -27,6 +28,8 @@
     "html5shiv": "~3.7.0",
     "jquery": "~2.0.3",
     "requirejs": "~2.1.8",
-    "restangular": "~1.1.8"
+    "restangular": "~1.1.8",
+    "pouchdb" :"~1.1.0",
+    "angular-pouchdb": "~0.1.3"
   }
 }

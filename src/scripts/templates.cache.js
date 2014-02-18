@@ -1,10 +1,11 @@
-angular.module('arb.templates.cache', ['scripts/common/app/container.tpl.html', 'scripts/common/app/footer.tpl.html', 'scripts/common/app/layouts/default.tpl.html', 'scripts/common/app/navbar.tpl.html', 'scripts/modules/article/article.layout.tpl.html', 'scripts/modules/article/create.tpl.html', 'scripts/modules/article/edit.tpl.html', 'scripts/modules/article/list.tpl.html', 'scripts/modules/article/view.tpl.html']);
+angular.module('spock.templates.cache', ['scripts/common/app/container.tpl.html', 'scripts/common/app/footer.tpl.html', 'scripts/common/app/layouts/default.tpl.html', 'scripts/common/app/navbar.tpl.html', 'scripts/modules/article/article.layout.tpl.html', 'scripts/modules/article/create.tpl.html', 'scripts/modules/article/edit.tpl.html', 'scripts/modules/article/list.tpl.html', 'scripts/modules/article/view.tpl.html']);
 
 angular.module("scripts/common/app/container.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("scripts/common/app/container.tpl.html",
+    "lalalal\n" +
     "<h1>{{name}}</h1>\n" +
     "\n" +
-    "<pre>{{Notifications|json}}</pre>\n" +
+    "<pre></pre>\n" +
     "<div class=\"container\" style=\"margin-top:60px\"></div>\n" +
     "");
 }]);
@@ -41,17 +42,23 @@ angular.module("scripts/common/app/navbar.tpl.html", []).run(["$templateCache", 
     "        <li><a ui-sref=\"article\">Article</a></li>\n" +
     "        <li><a href=\"\">About</a></li>\n" +
     "      </ul>\n" +
-    "      <ul class=\"nav navbar-nav navbar-right\" ng-switch=\"Auth.isLoggedIn()\">\n" +
-    "        <li class=\"dropdown\" ng-switch-when=\"true\">\n" +
-    "          <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{Page.get('currentUser').username}} <b class=\"caret\"></b></a>\n" +
-    "          <ul class=\"dropdown-menu\">\n" +
-    "            <li><a ui-sref=\"logout\">Logout</a></li>\n" +
-    "          </ul>\n" +
-    "        </li>\n" +
-    "        <li ng-switch-default>\n" +
+    "      <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "        <li>\n" +
     "          <a ui-sref=\"login\">Login</a>\n" +
     "        </li>\n" +
     "      </ul>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "      <div ng-hide=\"verified\">\n" +
+    "        <button ng-click=\"persona.verify()\">Verify Identity</button>\n" +
+    "      </div>\n" +
+    "      <div ng-show=\"verified\">Hello {{email}}<br/>\n" +
+    "        <button ng-click=\"persona.logout()\">Log Out</button>\n" +
+    "      </div>\n" +
+    "      <div ng-show=\"error\"><strong>{{error}}</strong></div>\n" +
+    "\n" +
+    "\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +

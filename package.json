@@ -1,5 +1,5 @@
 {
-  "name": "arb",
+  "name": "spock",
   "version": "0.0.1",
   "description": "AngularJS RequireJS Bootstrap",
   "scripts": {
@@ -12,7 +12,10 @@
     "bootstrap",
     "boilerplate"
   ],
-  "author": "João Pinto Neto",
+  "author": [
+    "João Pinto Neto",
+    "Gabriel Mancini de Campos"
+  ],
   "license": "MIT",
   "devDependencies": {
     "bower": "~1.2.6",
@@ -42,6 +45,18 @@
     "grunt-angular-map": "0.0.1",
     "grunt-ng-constant": "~0.4.5",
     "grunt-html2js": "~0.2.3",
-    "karma-ng-scenario": "~0.1.0"
+    "karma-ng-scenario": "~0.1.0",
+    "pouchdb-server": "~0.2.1",
+    "couch-persona": "0.0.6",
+    "grunt-http": "~1.1.0"
+  },
+  "dependencies": {
+    "passport": "~0.2.0",
+    "passport-local": "~0.1.6",
+    "colors": "~0.6.2",
+    "express": "~3.4.8",
+    "passport-persona": "~0.1.7",
+    "winston": "~0.7.2",
+    "express-winston": "~0.2.1"
   }
 }

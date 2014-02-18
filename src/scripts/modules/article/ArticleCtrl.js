@@ -1,20 +1,19 @@
-angular.module('arb.modules.article.ArticleCtrl', [
-  'arb.modules.article.ArticleLayout'
+angular.module('spock.modules.article.ArticleCtrl', [
+  'spock.modules.article.ArticleLayout'
 ])
 
-.controller('ArticleCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'Page', 'Auth', 'Notifications', 'ArbRest',
-  function ($scope, $rootScope, $state, $stateParams, Page, Auth, Notifications, ArbRest) {
+.controller('ArticleCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'db',
+  function ($scope, $rootScope, $state, $stateParams, db) {
     
-    var Articles = ArbRest.all('article');
-    Page.set('title', 'Article');
 
     this.create = function () {
-      Articles.post({
+      db.post({
         title: $scope.title,
         content: $scope.content
       })
       .then(function (article) {
-         $state.go('article');
+        db.sync();
+        $state.go('article');
       }, function (err) {
         console.log('Crap, error creating article!', err);
       });
@@ -43,9 +42,10 @@ angular.module('arb.modules.article.ArticleCtrl', [
     };
 
     this.find = function () {
-      Articles.getList()
+      db.allDocs({include_docs: true})
         .then(function (articles) {
-          $scope.articles = articles;
+          console.log(articles)
+          $scope.articles = _.pluck(articles.rows, 'doc');
         });
     };
 
@@ -58,8 +58,9 @@ angular.module('arb.modules.article.ArticleCtrl', [
   }
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', 'resolverProvider',
-  function ($stateProvider, $urlRouterProvider, resolverProvider) {
+.config(['$stateProvider', '$urlRouterProvider',
+  function ($stateProvider, $urlRouterProvider) {
+    
     $stateProvider
       .state('article', {
         parent: 'articleLayout',

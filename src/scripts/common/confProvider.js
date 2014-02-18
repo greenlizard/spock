@@ -1,8 +1,8 @@
-angular.module('arb.common.confProvider', [])
+angular.module('spock.common.confProvider', [])
 
 .provider('conf', [function () {
   this.conf = {
-    appName: 'arb',
+    appName: 'spock',
     baseUrl: 'http://api.myserver.com'
   };
 
@@ -15,7 +15,7 @@ angular.module('arb.common.confProvider', [])
       getApiUrl: function () {
         return conf.baseUrl +
           (conf.port ? ':' + conf.port : '') +
-          (conf.version ? '/' + conf.version : '');
+          (conf.path ? '/' + conf.path : '');
       },
       getAll: function () {
         return conf;

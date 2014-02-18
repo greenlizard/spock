@@ -1,12 +1,11 @@
-angular.module('arb.common.app.AppCtrl', [
+angular.module('spock.common.app.AppCtrl', [
   'ui.bootstrap',
   'ui.router'
 ])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'Page', 'Auth', 'Notifications',
-  function ($scope, $rootScope, $state, Page, Auth, Notifications) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state',
+  function ($scope, $rootScope, $state) {
     console.log('AppCtrl called');
-    Page.set('title', 'Home');
     $scope.name = 'I am AppCtrl';
 
     // setInterval(function () {
@@ -18,13 +17,9 @@ angular.module('arb.common.app.AppCtrl', [
   }
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', 'resolverProvider',
-  function ($stateProvider, $urlRouterProvider, resolverProvider) {
-    resolverProvider.add({
-      currentUser: ['Auth', function (Auth) {
-        return Auth.currentUser();
-      }]
-    })
+.config(['$stateProvider', '$urlRouterProvider', 
+  function ($stateProvider, $urlRouterProvider) {
+    
 
     $urlRouterProvider.otherwise('/');
 
@@ -33,12 +28,7 @@ angular.module('arb.common.app.AppCtrl', [
       views: {
         'root': {
           templateUrl: 'scripts/common/app/layouts/default.tpl.html',
-          controller: 'AppCtrl',
-          resolve: {
-            currentUser: ['Auth', function (Auth) {
-              return Auth.currentUser();
-            }]
-          }
+          controller: 'AppCtrl'
         }
       }
     })

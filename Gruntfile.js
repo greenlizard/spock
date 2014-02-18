@@ -10,7 +10,6 @@ var config = {
   require_map: 'config/src.map.js'
 };
 
-
 module.exports = function (grunt) {
   // grunt plugins
   var mountFolder = function (connect, dir) {
@@ -154,20 +153,20 @@ module.exports = function (grunt) {
       },
       unit: [{
         dest: '<%= config.src_path %>/config/constants.js',
-        name: 'arb.constants',
+        name: 'spock.constants',
         constants: {
           API_URL: 'http://localhost',
-          API_PORT: '3000',
-          API_VERSION: 'v1'
+          API_PORT: '5984',
+          API_PATH: 'ng-db'
         }
       }],
       continuous: [{
         dest: '<%= config.src_path %>/config/constants.js',
-        name:  'arb.constants',
+        name:  'spock.constants',
         constants: {
           API_URL: process.env.API_URL,
           API_PORT: process.env.API_PORT,
-          API_VERSION: 'v1',
+          API_PATH: 'ng-db',
           package: grunt.file.readJSON('package.json')
         }
       }]
@@ -183,7 +182,7 @@ module.exports = function (grunt) {
       source: {
         options: {
           fileName: 'index.js',
-          nsPrefix: 'arb',
+          nsPrefix: 'spock',
           cwd: '<%= config.src_path %>/scripts',
           files: {
             src: [
@@ -192,7 +191,7 @@ module.exports = function (grunt) {
               '!*.tpl.html',
               '!main.js',
               '!*.spec.js',
-              '!*ArbRest*'
+              '!*Auth*'
             ]
           }
         }
@@ -247,15 +246,35 @@ module.exports = function (grunt) {
     },
 
     html2js: {
-      arb: {
+      spock: {
         options: {
           base: '<%= config.src_path %>/'
         },
         src: ['<%= config.src_path %>/scripts/**/*.tpl.html'],
         dest: '<%= config.src_path %>/scripts/templates.cache.js',
-        module: 'arb.templates.cache'
+        module: 'spock.templates.cache'
       }
     },
+
+    http: {
+      deleteDb: {
+        options: {
+          url: 'http://127.0.0.1:5984/ng-db',
+          method: 'DELETE',
+        }
+      },
+
+      createDb: {
+        options: {
+          url: 'http://127.0.0.1:5984/ng-db',
+          method: 'PUT',
+        },
+        body: {
+          id:"ng-db",
+          name:"ng-db"
+        }
+      }
+    }
 
   });
 
@@ -274,6 +293,25 @@ module.exports = function (grunt) {
   // grunt.registerTask('coverage',       'make coverage',                                         ['install', 'karma:coverage', 'connect:coverage']);
   // grunt.registerTask('default',        '',                                                      ['test']);
 
+  grunt.registerTask('cmd', 'terminal commands', function (cmd, args) {
+    var spawn = require('child_process').spawn;
+
+    var done = this.async();
+    var ls = spawn(cmd, args.split(','));
+
+    ls.stdout.on('data', function (data) {
+      grunt.log.write(data);
+    });
+
+    ls.stderr.on('data', function (data) {
+      grunt.log.write(data);
+    });
+
+    ls.on('close', function (code) {
+      grunt.log.writeln('child process exited with code ' + code);
+    });
+    done();
+  });
 
   grunt.registerTask('deps', 'resolve deps', function(param) {
     if (!param) {
@@ -296,7 +334,11 @@ module.exports = function (grunt) {
 
   grunt.registerTask(
     'server', 'start server', [
+//      'cmd:pouchdb-server:"--user=john","--pass=doe"',
+      'cmd:couch-persona:--host=http\\\://127.0.0.1,port=5984,--username=john,--password=doe',
+      'http:deleteDb',
       'deps:source',
+      'http:createDb',
       'connect:source',
       'watch:source'
     ]

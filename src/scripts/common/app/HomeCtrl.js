@@ -1,15 +1,14 @@
-angular.module('arb.common.app.HomeCtrl', [])
+angular.module('spock.common.app.HomeCtrl', [])
 
-.controller('HomeCtrl', ['$scope', '$rootScope', '$state', 'Page', 'Auth', 'Notifications',
-  function ($scope, $rootScope, $state, Page, Auth, Notifications) {
+.controller('HomeCtrl', ['$scope', '$rootScope', '$state',
+  function ($scope, $rootScope, $state) {
     console.log('HomeCtrl called');
-    Page.set('title', 'Home');
     $scope.name = 'I am HomeCtrl';
   }
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', 'resolverProvider',
-  function ($stateProvider, $urlRouterProvider, resolverProvider) {
+.config(['$stateProvider', '$urlRouterProvider', 
+  function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
       .state('home', {

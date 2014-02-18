@@ -1,3 +1,4 @@
 /* Automatic generetad by angular_map on:src/scripts/common/resources/index.js */
-angular.module('arb.common.resources', [
+angular.module('spock.common.resources', [
+  "spock.common.resources.db"
 ]);
