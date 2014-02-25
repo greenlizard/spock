@@ -155,7 +155,10 @@ module.exports = function (grunt) {
         dest: '<%= config.src_path %>/config/constants.js',
         name: 'spock.constants',
         constants: {
-          API_URL: 'http://localhost',
+          API_PROTOCOL: 'http',
+          API_DOMAIN: 'localhost',
+          API_USER: 'john',
+          API_PASS: 'doe',
           API_PORT: '5984',
           API_PATH: 'ng-db'
         }
@@ -164,7 +167,10 @@ module.exports = function (grunt) {
         dest: '<%= config.src_path %>/config/constants.js',
         name:  'spock.constants',
         constants: {
-          API_URL: process.env.API_URL,
+          API_PROTOCOL: 'http',
+          API_DOMAIN: process.env.API_URL,
+          API_USER: 'john',
+          API_PASS: 'doe',
           API_PORT: process.env.API_PORT,
           API_PATH: 'ng-db',
           package: grunt.file.readJSON('package.json')
@@ -259,19 +265,39 @@ module.exports = function (grunt) {
     http: {
       deleteDb: {
         options: {
-          url: 'http://127.0.0.1:5984/ng-db',
+          url: 'http://john:doe@127.0.0.1:5984/ng-db',
           method: 'DELETE',
         }
       },
 
       createDb: {
         options: {
-          url: 'http://127.0.0.1:5984/ng-db',
+          url: 'http://john:doe@127.0.0.1:5984/ng-db',
           method: 'PUT',
         },
         body: {
           id:"ng-db",
           name:"ng-db"
+        }
+      }
+    },
+
+    'couch-compile': {
+      app: {
+        files: {
+          'tmp/app.json': 'couch/*'
+        }
+      }
+    },
+
+    'couch-push': {
+      options: {
+        user: 'john',
+        pass: 'doe'
+      },
+      localhost: {
+        files: {
+          'http://localhost:5984/myapp': 'tmp/app.json'
         }
       }
     }
@@ -334,7 +360,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask(
     'server', 'start server', [
-//      'cmd:pouchdb-server:"--user=john","--pass=doe"',
+      //'cmd:pouchdb-server:--user=john,--pass=doe',
       'cmd:couch-persona:--host=http\\\://127.0.0.1,port=5984,--username=john,--password=doe',
       'http:deleteDb',
       'deps:source',

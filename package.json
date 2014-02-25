@@ -48,7 +48,9 @@
     "karma-ng-scenario": "~0.1.0",
     "pouchdb-server": "~0.2.1",
     "couch-persona": "0.0.6",
-    "grunt-http": "~1.1.0"
+    "grunt-http": "~1.1.0",
+    "kanso": "~0.3.2",
+    "grunt-couch": "~1.4.0"
   },
   "dependencies": {
     "passport": "~0.2.0",

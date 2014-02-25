@@ -1,0 +1,9 @@
+{
+    "name": "spock",
+    "version": "0.0.1",
+    "description": "spock",
+    "attachments": ["src", "bower_components"],
+    "dependencies": {
+        "attachments": null
+    }
+}

@@ -4,6 +4,10 @@ spock
 
 Socket.io PouchDb Offline Couchdb Kanso
 
+####Installing Dependencies on Debian/Ubuntu
+
+    sudo apt-get install rebar erlang-src erlang-xmerl
+    
 ### License
 
 The MIT License (MIT)
