@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export HOST=http://john:due@localhost:5984
+export HOST=http://john:doe@localhost:5984
 curl -X PUT $HOST/_config/httpd/enable_cors -d '"true"'
 curl -X PUT $HOST/_config/cors/origins -d '"*"'
 curl -X PUT $HOST/_config/cors/credentials -d '"true"'
